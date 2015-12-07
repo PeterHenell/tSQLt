@@ -28,10 +28,8 @@ BEGIN
   
   IF(@rowCount <> @Expected)
   BEGIN
-    DECLARE @TableToText NVARCHAR(MAX);
-    EXEC tSQLt.TableToText @TableName = @FullName,@txt = @TableToText OUTPUT;
     DECLARE @Msg NVARCHAR(MAX);
-    SET @Msg = 'Rowcount of ' + @FullName + ' expected :' + @Expected + ' but was ' + @rowCount + CHAR(13) + CHAR(10)+ @TableToText;
+    SET @Msg = 'RowCount of ' + @FullName + ' expected [ ' + CAST(@Expected AS NVARCHAR(MAX)) + ' ] but was [ ' + CAST(@rowCount AS NVARCHAR(MAX)) + ' ]' + CHAR(13) + CHAR(10);
     EXEC tSQLt.Fail @Message,@Msg;
   END
 
